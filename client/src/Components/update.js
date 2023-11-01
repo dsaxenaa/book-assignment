@@ -26,6 +26,7 @@ const Update = () => {
         setPrice(book.price);
         setDescription(book.description);
         setAuthor(book.author);
+        console.log(name)
       } catch (err) {
         console.error(err);
       }
@@ -37,16 +38,21 @@ const Update = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const data = {
-        name: name,
-        price: price,
-        description: description,
-        author: author,
-      };
+      // const data = {
+      //   name: name,
+      //   price: price,
+      //   description: description,
+      //   author: author,
+      // };
 
+      const productData = new FormData();
+      productData.append("name", name);
+      productData.append("description", description);
+      productData.append("price", price);
+      productData.append("author",author);
       const response = await axios.put(
         `http://localhost:8080/api/v1/books/updateBook/${bookId}`,
-        data
+        productData
       );
 
       if (response.data.success) {

@@ -10,24 +10,32 @@ const Add = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
-//   const [photo, setPhoto] = useState(null);
+  const [photo, setPhoto] = useState(null);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault()
     try {
-        const dataa = {
-            name: name,
-            price: price,
-            description: description,
-            author: author,
-          };
+      const productData = new FormData();
+      productData.append("name", name);
+      productData.append("description", description);
+      productData.append("price", price);
+      productData.append("author",author);
+      productData.append("photo", photo);
+        // const dataa = {
+        //     name: name,
+        //     price: price,
+        //     description: description,
+        //     author: author,
+        //   };
     
      
 
-      const { data } = axios.post("http://localhost:8080/api/v1/books/addBook",dataa);
+      const { data } = axios.post("http://localhost:8080/api/v1/books/addBook",productData);
+      // const { data } = axios.post("http://localhost:8080/api/v1/books/addBook",{name,price,description,author});
       toast.success("Book Added!");
       navigate("/");
     } catch (error) {
-      console.log(error);
+      toast.error(error)
     }
   };
 
@@ -35,7 +43,7 @@ const Add = () => {
     <div>
       <h1 className="mt-[2rem]">ADD BOOK</h1>
       <form className="m-[5rem]">
-        {/* <div className="mb-3">
+        <div className="mb-3">
           <label className="btn btn-outline-secondary col-md-12">
             {photo ? photo.name : "Upload Photo"}
             <input
@@ -58,7 +66,7 @@ const Add = () => {
               />
             </div>
           )}
-        </div> */}
+        </div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Title
@@ -115,7 +123,7 @@ const Add = () => {
         <button
           type="submit"
           className="btn btn-primary text-black"
-          onClick={handleClick}
+          onClick={(e)=>handleClick(e)}
         >
           Submit
         </button>

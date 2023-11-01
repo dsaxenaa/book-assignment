@@ -48,9 +48,9 @@ const Books = () => {
       </div>
       <button className="btn btn-success mt-[2rem]"><a href="/add" className="card-link">Add Books</a></button>
       <div className="mt-[5rem] ml-[3rem] mr-[3rem] flex flex-row justify-center ">
-        {books?.map((book) => {
+        {books?.map((book,i) => {
           return (
-            <div className="card mx-[2rem]" style={{ width: "18rem" }}>
+            <div className="card mx-[2rem]" style={{ width: "18rem" }} key={i}>
                 <img src={`http://localhost:8080/api/v1/books/product-photo/${book._id}`} className="card-img-top" alt="book cover"></img>
               <div className="card-body">
                 <h5 className="card-title">{book.name}</h5>

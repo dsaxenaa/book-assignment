@@ -3,6 +3,7 @@ import colors from "colors"
 import { connectDB } from "./db/db.js"
 import cors from "cors"
 import express from "express"
+import formidable from "express-formidable"
 import morgan from 'morgan'
 
 // import multer from "multer"
@@ -11,6 +12,7 @@ const app = express();
 
 connectDB()
 
+app.use(formidable())
 app.use(cors());
 app.use(express.json());
 // const storage = multer.diskStorage({
