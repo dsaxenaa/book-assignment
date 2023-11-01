@@ -45,7 +45,7 @@ const Add = () => {
       <form className="m-[5rem]">
         <div className="mb-3">
           <label className="btn btn-outline-secondary col-md-12">
-            {photo ? photo.name : "Upload Photo"}
+            {photo ? photo.name : "Upload Photo of less than 1 Mb"}
             <input
               type="file"
               name="photo"
